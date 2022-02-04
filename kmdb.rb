@@ -68,14 +68,155 @@
 
 # Delete existing data, so you'll start fresh each time this script is run.
 # Use `Model.destroy_all` code.
-# TODO!
+Movie.destroy_all
+Person.destroy_all
+Role.destroy_all
 
 # Generate models and tables, according to the domain model
-# TODO!
+
+# ran 'rails generate model Movie' 
+# updated new migrate file
+# ran 'rails db:migrate' 
+
+# ran 'rails generate model Person' 
+# updated new migrate file
+# ran 'rails db:migrate'
+
+# ran 'rails generate model Role' 
+# updated new migrate file
+# ran 'rails db:migrate'
+
+# added associations
 
 # Insert data into your database that reflects the sample data shown above
 # Do not use hard-coded foreign key IDs.
-# TODO!
+
+#Add people data
+actor = Person.new 
+actor.name = "Christian Bale"
+actor.save
+
+actor = Person.new 
+actor.name = "Michael Caine"
+actor.save
+
+actor = Person.new 
+actor.name = "Liam Neeson"
+actor.save
+
+actor = Person.new 
+actor.name = "Katie Holmes"
+actor.save
+
+actor = Person.new 
+actor.name = "Gary Oldman"
+actor.save
+
+actor = Person.new 
+actor.name = "Heath Ledger"
+actor.save
+
+actor = Person.new 
+actor.name = "Aaron Eckhart"
+actor.save
+
+actor = Person.new 
+actor.name = "Maggie Gyllenhaal"
+actor.save
+
+actor = Person.new 
+actor.name = "Tom Hardy"
+actor.save
+
+actor = Person.new 
+actor.name = "Joseph Gordon-Levitt"
+actor.save
+
+actor = Person.new 
+actor.name = "Anne Hathaway"
+actor.save
+
+actor = Person.new 
+actor.name = "Christopher Nolan"
+actor.save
+
+#Add movie data
+christopher = Person.where({name: "Christopher Nolan"})[0]
+
+movie = Movie.new 
+movie.title = "Batman Begins"
+movie.year_released = 2005
+movie.rated = "PG-13"
+movie.director_id = christopher.id
+movie.save 
+
+movie = Movie.new 
+movie.title = "The Dark Knight"
+movie.year_released = 2008
+movie.rated = "PG-13"
+movie.director_id = christopher.id
+movie.save 
+
+movie = Movie.new 
+movie.title = "The Dark Knight Rises"
+movie.year_released = 2012
+movie.rated = "PG-13"
+movie.director_id = christopher.id
+movie.save 
+
+#Add role data
+batmanbegins = Movie.where({title: "Batman Begins"})[0]
+darkknight = Movie.where({title: "The Dark Knight"})[0]
+darkknightrises = Movie.where({title: "The Dark Knight Rises"})[0]
+
+christian = Person.where({name: "Christian Bale"})[0]
+michael = Person.where({name: "Michael Caine"})[0]
+liam = Person.where({name: "Liam Neeson"})[0]
+katie = Person.where({name: "Katie Holmes"})[0]
+gary = Person.where({name: "Gary Oldman"})[0]
+heath = Person.where({name: "Heath Ledger"})[0]
+aaron = Person.where({name: "Aaron Eckhart"})[0]
+michael = Person.where({name: "Michael Caine"})[0]
+maggie = Person.where({name: "Maggie Gyllenhaal"})[0]
+tom = Person.where({name: "Tom Hardy"})[0]
+joseph = Person.where({name: "Joseph Gordon-Levitt"})[0]
+anne = Person.where({name: "Anne Hathaway"})[0]
+
+role = Role.new 
+role.movie_id = batmanbegins.id 
+role.actor_id = christian.id 
+role.character_name = "Bruce Wayne"
+role.save 
+
+role = Role.new 
+role.movie_id = batmanbegins.id 
+role.actor_id = michael.id 
+role.character_name = "Alfred"
+role.save 
+
+role = Role.new 
+role.movie_id = batmanbegins.id 
+role.actor_id = liam.id 
+role.character_name = "Ra's Al Ghul"
+role.save 
+
+role = Role.new 
+role.movie_id = batmanbegins.id 
+role.actor_id = katie.id 
+role.character_name = "Rachel Dawes"
+role.save 
+
+role = Role.new 
+role.movie_id = batmanbegins.id 
+role.actor_id = gary.id 
+role.character_name = "Commissioner Gordon"
+role.save
+
+role = Role.new 
+role.movie_id = darkknight.id 
+role.actor_id = christian.id 
+role.character_name = "Bruce Wayne"
+role.save
 
 # Prints a header for the movies output
 puts "Movies"
@@ -91,5 +232,5 @@ puts "Top Cast"
 puts "========"
 puts ""
 
-# Query the cast data and loop through the results to display the cast output for each movie
+# Query the cast data and loop through results to display the cast output for each movie
 # TODO!
