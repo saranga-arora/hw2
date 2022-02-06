@@ -86,8 +86,6 @@ Role.destroy_all
 # updated new migrate file
 # ran 'rails db:migrate'
 
-# added associations
-
 # Insert data into your database that reflects the sample data shown above
 # Do not use hard-coded foreign key IDs.
 
@@ -218,13 +216,70 @@ role.actor_id = christian.id
 role.character_name = "Bruce Wayne"
 role.save
 
+role = Role.new 
+role.movie_id = darkknight.id 
+role.actor_id = heath.id 
+role.character_name = "Joker"
+role.save 
+
+role = Role.new 
+role.movie_id = darkknight.id 
+role.actor_id = aaron.id 
+role.character_name = "Harvey Dent"
+role.save
+
+role = Role.new 
+role.movie_id = darkknight.id 
+role.actor_id = michael.id 
+role.character_name = "Alfred"
+role.save
+
+role = Role.new 
+role.movie_id = darkknight.id 
+role.actor_id = maggie.id 
+role.character_name = "Rachel Dawes"
+role.save
+
+role = Role.new 
+role.movie_id = darkknightrises.id 
+role.actor_id = christian.id 
+role.character_name = "Bruce Wayne"
+role.save
+
+role = Role.new 
+role.movie_id = darkknightrises.id 
+role.actor_id = gary.id 
+role.character_name = "Commissioner Gordon"
+role.save
+
+role = Role.new 
+role.movie_id = darkknightrises.id 
+role.actor_id = tom.id 
+role.character_name = "Bane"
+role.save
+
+role = Role.new 
+role.movie_id = darkknightrises.id 
+role.actor_id = joseph.id 
+role.character_name = "John Blake"
+role.save
+
+role = Role.new 
+role.movie_id = darkknightrises.id 
+role.actor_id = anne.id 
+role.character_name = "Selina Kyle"
+role.save
+
 # Prints a header for the movies output
 puts "Movies"
 puts "======"
 puts ""
 
 # Query the movies data and loop through the results to display the movies output
-# TODO!
+for movie in Movie.all 
+    director = Person.where({id: movie.director_id})[0]
+    puts " %-27s %-10s %-10s %-15s" % [movie.title, movie.year_released, movie.rated, director.name]
+end 
 
 # Prints a header for the cast output
 puts ""
@@ -233,4 +288,9 @@ puts "========"
 puts ""
 
 # Query the cast data and loop through results to display the cast output for each movie
-# TODO!
+for movie in Movie.all 
+    for role in movie.roles
+        actor = Person.where({id: role.actor_id})[0]
+        puts "%-25s %-25s %-25s" % [movie.title, actor.name, role.character_name]
+    end 
+end
